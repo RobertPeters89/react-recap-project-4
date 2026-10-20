@@ -4,6 +4,11 @@ import { useState } from "react";
 export default function Color({ color, onDeleteColor }) {
   const [showConfirm, setShowConfirm] = useState(false);
 
+  function handleDeleteClick() {
+    if (showConfirm) onDeleteColor(color.id);
+    else setShowConfirm(true);
+  }
+
   return (
     <div
       className="color-card"
@@ -16,13 +21,7 @@ export default function Color({ color, onDeleteColor }) {
       {showConfirm && (
         <button onClick={() => setShowConfirm(false)}>CANCEL</button>
       )}
-      <button
-        onClick={() =>
-          showConfirm ? onDeleteColor(color.id) : setShowConfirm(true)
-        }
-      >
-        DELETE
-      </button>
+      <button onClick={handleDeleteClick}>DELETE</button>
     </div>
   );
 }
