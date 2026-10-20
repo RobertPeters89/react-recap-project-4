@@ -1,6 +1,7 @@
 import "./Color.css";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm";
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
 
 export default function Color({ color, onDeleteColor, onEditColor }) {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -22,6 +23,7 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
       style={{ backgroundColor: color.hex, color: color.contrastText }}
     >
       <h2 className="color-card-highlight">{color.hex}</h2>
+      <CopyToClipboard hex={color.hex} />
       {editColor ? (
         <>
           <ColorForm
