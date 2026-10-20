@@ -30,13 +30,12 @@ export default function ColorForm({
         <br />
         <ColorInput id="hex" defaultValue={initialData.hex} />
       </label>
-      <br />
+
       <label htmlFor="contrastText">
         Contrast Text
-        <br />
         <ColorInput id="contrastText" defaultValue={initialData.contrastText} />
       </label>
-      <br />
+
       <button>ADD COLOR</button>
     </form>
   );
