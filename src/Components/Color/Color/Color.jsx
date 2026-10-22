@@ -7,7 +7,6 @@ import ContrastChecker from "../../ContrastChecker/ContrastChecker";
 export default function Color({ color, onDeleteColor, onEditColor }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [editColor, setEditColor] = useState(false);
-  const [safeHex, setSafeHex] = useState(color.hex);
 
   function handleDeleteClick() {
     if (showConfirm) onDeleteColor(color.id);
@@ -15,7 +14,6 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
   }
 
   function handleEditSubmit(updateColor) {
-    setSafeHex(color.hex);
     onEditColor({ ...updateColor, id: color.id });
     setEditColor(false);
   }
@@ -32,7 +30,7 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
           <ColorForm
             onSubmitColor={handleEditSubmit}
             initialData={color}
-            buttonLabel="EDIT"
+            buttonLabel="ADD COLOR"
           />
           <button onClick={() => setEditColor(false)}>CANCEL</button>
         </>
@@ -40,11 +38,7 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
         <>
           <p>{color.role}</p>
           <p>Contrast Text: {color.contrastText}</p>
-          <ContrastChecker
-            hex={color.hex}
-            contrastText={color.contrastText}
-            safeHex={safeHex}
-          />
+          <ContrastChecker hex={color.hex} contrastText={color.contrastText} />
           {showConfirm && (
             <p className="color-card-highlight">Really delete?</p>
           )}

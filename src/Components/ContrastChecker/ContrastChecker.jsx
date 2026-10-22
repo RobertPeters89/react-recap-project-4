@@ -8,7 +8,13 @@ function getScore(data) {
   return "Nope";
 }
 
-export default function ContrastChecker({ hex, contrastText, safeHex }) {
+function getScoreColor(data) {
+  if (data.AA === "pass") return "blue";
+  if (data.AALarge === "pass") return "white";
+  return "red";
+}
+
+export default function ContrastChecker({ hex, contrastText }) {
   const { data, isLoading, error } = useSWR(
     `https://webaim.org/resources/contrastchecker/?fcolor=${contrastText.replace("#", "")}&bcolor=${hex.replace("#", "")}&api`,
     fetcher,
@@ -25,7 +31,7 @@ export default function ContrastChecker({ hex, contrastText, safeHex }) {
   return (
     <p
       style={{
-        backgroundColor: safeHex,
+        backgroundColor: getScoreColor(data),
         color: "#000",
         display: "inline-block",
       }}
